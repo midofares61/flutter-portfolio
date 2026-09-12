@@ -1,0 +1,120 @@
+.experience {
+  background: var(--bgSecondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.experience_item .vertical-timeline-element-date {
+  color: var(--textMuted) !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+}
+
+.experience_header {
+  margin-bottom: 16px;
+}
+
+.experience_title {
+  font-family: var(--fontDisplay);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--textColor);
+  margin: 0 0 4px;
+}
+
+.experience_company {
+  font-size: 18px;
+  font-weight: 600;
+  background: var(--gradientText);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 8px;
+}
+
+.experience_meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.experience_type,
+.experience_location {
+  font-size: 13px;
+  color: var(--textMuted);
+  padding: 4px 12px;
+  background: rgba(200, 162, 90, 0.08);
+  border-radius: 20px;
+  border: 1px solid var(--borderColor);
+}
+
+.experience_points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.experience_points li {
+  font-size: 14px;
+  color: var(--textMuted);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.experience_points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  background: var(--mainColor);
+  border-radius: 50%;
+}
+
+.experience_link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--mainColor) !important;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all var(--mainTransition);
+}
+
+.experience_link:hover {
+  color: var(--mainColorLight) !important;
+  transform: translateX(4px);
+}
+
+/* Timeline line and icon overrides */
+.vertical-timeline::before {
+  background: var(--borderColor) !important;
+}
+
+.vertical-timeline-element-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+}
+
+@media (max-width: 1169px) {
+  .experience_item .vertical-timeline-element-date {
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .experience_title {
+    font-size: 19px;
+  }
+
+  .experience_company {
+    font-size: 16px;
+  }
+}

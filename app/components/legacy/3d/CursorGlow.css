@@ -1,0 +1,43 @@
+.cursor_glow,
+.cursor_trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.cursor_glow {
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
+  background: radial-gradient(circle, rgba(200, 162, 90, 0.8) 0%, transparent 70%);
+  mix-blend-mode: screen;
+}
+
+.cursor_trail {
+  width: 300px;
+  height: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+  background: radial-gradient(circle, rgba(200, 162, 90, 0.06) 0%, rgba(83, 70, 102, 0.03) 40%, transparent 70%);
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 991px) {
+  .cursor_glow,
+  .cursor_trail {
+    display: none;
+  }
+}
+
+body.light .cursor_glow {
+  background: radial-gradient(circle, rgba(176, 133, 32, 0.6) 0%, transparent 70%);
+}
+
+body.light .cursor_trail {
+  background: radial-gradient(circle, rgba(176, 133, 32, 0.04) 0%, rgba(61, 46, 82, 0.02) 40%, transparent 70%);
+}

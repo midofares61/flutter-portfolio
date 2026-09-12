@@ -1,0 +1,39 @@
+.qualification {
+  background: var(--bgSecondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.qual_cont {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.qual_cont p {
+  font-size: 17px;
+  color: var(--textMuted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.qual_cont p span {
+  color: var(--mainColor);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.qual_cont .custom_button {
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .qual_cont {
+    padding: 28px 24px;
+  }
+
+  .qual_cont p {
+    font-size: 15px;
+  }
+}

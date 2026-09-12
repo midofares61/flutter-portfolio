@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fontBase: var(--font-inter), sans-serif;
+  --fontDisplay: var(--font-playfair), serif;
+  --mainTransition: 0.3s ease;
+  --mainColor: #c8a25a;
+  --mainColorLight: #e0c17a;
+  --altColor: #534666;
+  --altColorLight: #6b5a80;
+  --textColor: #e8e8e8;
+  --textMuted: #9ca3af;
+  --bgColor: #0f0d12;
+  --bgSecondary: #1a1720;
+  --bgCard: rgba(30, 26, 36, 0.7);
+  --borderColor: rgba(200, 162, 90, 0.15);
+  --glassBg: rgba(30, 26, 36, 0.6);
+  --glassBlur: blur(16px);
+  --glassBorder: 1px solid rgba(200, 162, 90, 0.12);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadowGlow: 0 0 30px rgba(200, 162, 90, 0.1);
+  --gradient: linear-gradient(135deg, var(--mainColor), var(--altColor));
+  --gradientText: linear-gradient(to right, #c8a25a 20%, #ffffff 50%, #c8a25a 80%);
+}
+
+.light {
+  --textColor: #1a1a2e;
+  --textMuted: #4a5568;
+  --bgColor: #fafafa;
+  --bgSecondary: #f0ede8;
+  --bgCard: rgba(255, 255, 255, 0.8);
+  --borderColor: rgba(83, 70, 102, 0.15);
+  --glassBg: rgba(255, 255, 255, 0.6);
+  --glassBorder: 1px solid rgba(83, 70, 102, 0.12);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadowGlow: 0 0 30px rgba(83, 70, 102, 0.08);
+  --mainColor: #b08520;
+  --mainColorLight: #c8a25a;
+  --altColor: #3d2e52;
+  --altColorLight: #534666;
+  --gradient: linear-gradient(135deg, var(--mainColor), var(--altColor));
+  --gradientText: linear-gradient(135deg, var(--mainColor), var(--mainColorLight), var(--mainColor));
+}
+
+body {
+  font-family: var(--fontBase) !important;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--mainTransition), color var(--mainTransition);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bgColor);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--mainColor), var(--altColor));
+  border-radius: 10px;
+  border: 2px solid var(--bgColor);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--mainColorLight), var(--altColorLight));
+}
+
+@layer components {
+  .gradient-text {
+    background: var(--gradientText);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shine 3s linear infinite;
+  }
+
+  .main-heading {
+    @apply text-center font-bold mb-16 relative w-full;
+    font-family: var(--fontDisplay);
+    font-size: 42px;
+    color: var(--textColor);
+  }
+
+  @media (max-width: 991px) {
+    .main-heading {
+      font-size: 36px;
+      @apply mb-12;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .main-heading {
+      font-size: 30px;
+      @apply mb-10;
+    }
+  }
+
+  .main-heading span {
+    @apply gradient-text;
+  }
+
+  .main-heading::after {
+    content: "";
+    @apply block w-20 h-1 mx-auto mt-4 rounded-full;
+    background: var(--gradient);
+  }
+
+  .custom-button {
+    @apply relative px-8 py-3 rounded-lg font-bold transition-all duration-300 overflow-hidden flex items-center justify-center cursor-pointer outline-none;
+    font-family: var(--fontBase);
+    border: 1.5px solid var(--mainColor);
+    color: var(--mainColor);
+    background: transparent;
+  }
+
+  .custom-button::before {
+    content: "";
+    @apply absolute top-0 left-[-100%] w-full h-full transition-all duration-300 -z-10;
+    background: var(--gradient);
+  }
+
+  .custom-button:hover {
+    @apply text-white border-transparent -translate-y-0.5;
+    box-shadow: 0 4px 20px rgba(200, 162, 90, 0.3);
+  }
+
+  .custom-button:hover::before {
+    @apply left-0;
+  }
+
+  .glass-card {
+    @apply rounded-2xl transition-all duration-300;
+    background: var(--glassBg);
+    backdrop-filter: var(--glassBlur);
+    -webkit-backdrop-filter: var(--glassBlur);
+    border: var(--glassBorder);
+    box-shadow: var(--shadow);
+
+    &:hover {
+      @apply -translate-y-1;
+      box-shadow: var(--shadowGlow), var(--shadow);
+      border-color: var(--mainColor);
+    }
+  }
+
+  .vertical-timeline-element-content {
+    padding: 20px !important;
+    
+    @media (min-width: 768px) {
+      padding: 32px !important;
+    }
+  }
+
+  .profile_ring {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] border border-[rgba(200,162,90,0.15)] rounded-full;
+    animation: profileRingSpin 12s linear infinite;
+
+    &::before {
+      content: "";
+      @apply absolute top-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full;
+      background: var(--mainColor);
+      box-shadow: 0 0 12px rgba(200, 162, 90, 0.6);
+    }
+  }
+
+  .profile_ring_2 {
+    @apply w-[125%] h-[125%] border-[rgba(83,70,102,0.1)] !important;
+    animation: profileRingSpin 18s linear infinite reverse !important;
+
+    &::before {
+      @apply bg-[#534666] !important;
+      box-shadow: 0 0 12px rgba(83, 70, 102, 0.5) !important;
+    }
+  }
+
+  .profile_glow {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] pointer-events-none -z-10;
+    background: radial-gradient(circle, rgba(200, 162, 90, 0.1) 0%, rgba(83, 70, 102, 0.05) 40%, transparent 60%);
+    animation: profileGlowPulse 4s ease-in-out infinite alternate;
+  }
+
+  .particle_field {
+    @apply absolute inset-0 w-full h-full pointer-events-none z-0;
+  }
+
+  .floating_shapes,
+  .network_scene {
+    @apply relative w-full h-[150px] pointer-events-none z-0;
+  }
+
+  @media (max-width: 767px) {
+    .floating_shapes,
+    .network_scene {
+      @apply h-[70px];
+    }
+  }
+
+  .skills_sphere {
+    @apply w-full h-full;
+  }
+
+  /* Loader */
+  .loader_cont {
+    @apply flex justify-center items-center fixed inset-0 w-full h-screen z-[10000];
+    background: var(--bgColor);
+
+    .loader {
+      @apply relative w-[60px] h-[60px];
+
+      span {
+        @apply absolute w-full h-full rounded-full border-[3px] border-transparent;
+        border-top-color: var(--mainColor);
+        animation: loaderSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+
+        &:nth-child(1) {
+          animation-delay: -0.45s;
+        }
+
+        &:nth-child(2) {
+          @apply w-[80%] h-[80%] top-[10%] left-[10%];
+          animation-delay: -0.3s;
+          border-top-color: var(--altColor);
+        }
+
+        &:nth-child(3) {
+          @apply w-[60%] h-[60%] top-[20%] left-[20%];
+          animation-delay: -0.15s;
+          border-top-color: var(--mainColorLight);
+        }
+      }
+    }
+  }
+}
+
+@keyframes profileRingSpin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes profileGlowPulse {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes loaderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes scrollWheel {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
